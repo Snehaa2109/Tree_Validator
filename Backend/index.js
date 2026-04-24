@@ -1,12 +1,18 @@
-const express = require("express");
+require("dotenv").config();
+
 const cors = require("cors");
 
 const bfhlRoutes = require("./routes/bfhlRoutes");
 
 const app = express();
-
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST"],
+    credentials: true
+  })
+);
 // Middlewares
-app.use(cors());
 app.use(express.json());
 
 // Routes
